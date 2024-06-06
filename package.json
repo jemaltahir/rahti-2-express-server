@@ -1,0 +1,12 @@
+{
+  "name": "rahti-2-express-server",
+  "version": "1.0.0",
+  "description": "Testing express server to connect MySQL in Rahti2.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
