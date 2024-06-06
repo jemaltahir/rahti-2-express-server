@@ -15,3 +15,9 @@ oc set env dc/my-express-app MYSQL_HOST=<mysql-service>
 oc set env dc/my-express-app MYSQL_USER=<mysql-username>
 oc set env dc/my-express-app MYSQL_PASSWORD=<mysql-password>
 oc set env dc/my-express-app MYSQL_DATABASE=<mysql-database>
+```
+
+List the services in the project to find the MySQL service.
+
+```
+oc get svc
