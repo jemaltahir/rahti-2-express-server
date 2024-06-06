@@ -21,3 +21,9 @@ List the services in the project to find the MySQL service.
 
 ```
 oc get svc
+
+Deploy this project in Rahti2
+
+```
+ oc new-app https://github.com/jemaltahir/rahti-2-express-server.git --name server --strategy=docker
+```
