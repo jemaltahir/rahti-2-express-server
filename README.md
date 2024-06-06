@@ -6,6 +6,8 @@ Testing express server to connect MySQL in Rahti2.
 npm init -y
 
 npm install mysql
+npm install express --save
+
 ```
 
 Run the following commands to set the environment variables:
