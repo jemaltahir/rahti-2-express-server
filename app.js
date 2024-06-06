@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2/promise'); // Use mysql2/promise for async operations
+const mysql = require('mysql2/promise');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -14,29 +14,31 @@ async function connectToMySQL() {
     });
 
     console.log('Connected to MySQL');
-
-    // Example query
-    const [rows, fields] = await connection.execute('SELECT NOW()');
-    console.log('Current database time:', rows[0]['NOW()']);
-
-    // Close the connection
-    await connection.end();
     return connection;
   } catch (err) {
     console.error('Error connecting to MySQL:', err);
-    throw err; // Throw error for handling in app.listen callback
+    throw err;
   }
 }
 
 // Route to get current database time
 app.get('/', async (req, res) => {
+  let connection;
   try {
-    const connection = await connectToMySQL();
+    connection = await connectToMySQL();
     const [rows, fields] = await connection.execute('SELECT NOW()');
+    console.log('Current database time:', rows[0]['NOW()']);
     await connection.end(); // Close connection after query
     res.send(`Database time: ${rows[0]['NOW()']}`);
   } catch (err) {
     console.error('Error querying database:', err);
+    if (connection) {
+      try {
+        await connection.end();
+      } catch (e) {
+        console.error('Error closing connection:', e);
+      }
+    }
     res.status(500).send('Error querying database');
   }
 });
